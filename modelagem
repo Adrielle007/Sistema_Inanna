@@ -1,1 +1,150 @@
-.
+Modelo Entidade-Relacionamento (MER)
+
+1.Entidades
+
+1.1 Estabelecimento
+
+Definição: Representa uma empresa que utiliza o sistema Inanna para gerenciar seus serviços de beleza e estética. Um estabelecimento pode ser uma barbearia, salão de beleza, clínica de estética ou outro negócio relacionado ao segmento.
+
+1.2 Cliente
+
+Definição: Representa a pessoa que utiliza os serviços oferecidos pelos estabelecimentos cadastrados no sistema.
+
+1.3 Profissional 
+
+Definição: Representa o profissional responsável pela realização dos serviços oferecidos por um estabelecimento, como barbeiro, cabeleireiro, manicure, esteticista ou massoterapeuta.
+
+1.4 Categoria 
+
+Definição:  Representa a classificação dos serviços oferecidos pelo estabelecimento, permitindo organizar os procedimentos de acordo com sua área, como barbearia, cabelo, unhas, estética facial ou estética corporal.
+
+1.5 Serviço 
+
+Definição: Representa um procedimento que pode ser oferecido por um estabelecimento aos seus clientes. Exemplos incluem corte de cabelo, barba, manicure, limpeza de pele, design de sobrancelhas e massagem.
+
+1.6 ProfissionalServico
+
+Definição:  Entidade associativa responsável por representar quais serviços cada profissional está habilitado a realizar. Ela resolve o relacionamento muitos-para-muitos existente entre Profissional e Serviço.
+
+1.7 Agendamento 
+
+Definição: Representa a reserva de um horário realizada por um cliente para receber determinado serviço com um profissional de um estabelecimento.
+
+1.8 Pagamento
+
+Definição:  Representa o registro financeiro referente ao pagamento de um agendamento realizado pelo cliente.
+
+
+
+
+2. Relacionamentos  e Cardinalidades
+
+
+
+2.1 Estabelecimento e Profissional 
+
+[Estabelecimento] (1) <possui> (N) [Profissional]
+ Um estabelecimento pode possuir vários profissionais, enquanto cada profissional está vinculado a um único estabelecimento.
+
+2.2 Estabelecimento e Serviço 
+
+[Estabelecimento] (1) <oferece> (N) [Serviço]
+ Um estabelecimento pode oferecer diversos serviços, enquanto cada serviço está cadastrado em um único estabelecimento.
+
+ 2.3 Categoria e Serviço 
+
+[Categoria] (1) <classifica> (N) [Serviço]
+ Uma categoria pode classificar vários serviços, enquanto cada serviço pertence a uma única categoria.
+
+2.4 Profissional e Serviço
+
+[Profissional] (N) <realiza> (N) [Serviço]
+ Um profissional pode estar habilitado para realizar vários serviços, e um mesmo serviço pode ser realizado por vários profissionais. Por esse motivo, o relacionamento N:N é representado pela entidade associativa ProfissionalServico.
+
+2.5 Profissional e ProfissionalServico
+
+[Profissional] (1) <possui> (N) [ProfissionalServico]
+ Um profissional pode possuir vários registros em ProfissionalServico, sendo cada registro referente a um serviço que ele está habilitado a realizar.
+
+ 2.6 Serviço e ProfissionalServico
+ Serviço] (1) <é realizado por> (N) [ProfissionalServico]
+  Um serviço pode estar associado a vários profissionais por meio da entidade ProfissionalServico, enquanto cada registro de ProfissionalServico está relacionado a um único serviço.
+  
+ 2.7 Estabelecimento e cliente 
+
+ [Estabelecimento] (N) <atende> (N) [Cliente]
+ Um estabelecimento pode atender vários clientes e um cliente pode utilizar os serviços de diferentes estabelecimentos. Dessa forma, o relacionamento entre Estabelecimento e Cliente é N:N, representado pelos agendamentos realizados.
+
+ 2.8 Cliente e Agendamento 
+
+ [Cliente] (1) <realiza> (N) [Agendamento]
+  Um cliente pode realizar vários agendamentos ao longo do tempo, enquanto cada agendamento pertence a um único cliente.
+
+2.9 Estabelecimento e Agendamento
+
+[Estabelecimento] (1) <recebe> (N) [Agendamento]
+ Um estabelecimento pode receber vários agendamentos, enquanto cada agendamento ocorre em um único estabelecimento.
+
+ 2.10 Profissional e Agendamento 
+
+ [Profissional] (1) <atende> (N) [Agendamento]
+  Um profissional pode realizar vários atendimentos, enquanto cada agendamento é destinado a um único profissional.
+
+2.11 Serviço e Agendamento
+
+[Serviço] (1) <é agendado em> (N) [Agendamento]
+Um serviço pode aparecer em diversos agendamentos, enquanto cada agendamento está relacionado a um único serviço.
+
+2.12 Agendamento e Pagamento 
+
+[Agendamento] (1) <possui> (0..1) [Pagamento]
+Um agendamento pode ainda não possuir um pagamento registrado ou pode possuir um único pagamento. Isso permite representar situações em que o serviço foi agendado, mas ainda não foi pago.
+
+
+Atributos
+
+
+ 3.1 Estabelicimentos
+ 
+ id_estabelecimento, razao_social, nome_fantasia, cnpj,  telefone, email, endereco
+
+ 3.2 Cliente
+
+ id_cliente, nome, cpf, telefone, email, data_nascimento
+
+ 3.3 Profissional
+
+ id_profissional, nome, cpf,	telefone, email,	cargo, status
+ 
+3.4 Categoria
+
+id_categoria, nome,	descrição
+ 
+3.5 Serviço
+
+id_servico,	nome,	descricao,	duracaopreco,	Decimal	id_categoria,	id_estabelecimento
+
+3.6 ProfissionalServico
+
+id_profissional, id_servico
+
+3.7 Agendamento 
+
+id_agendamento,	data,	horari,	status,	observacao,	id_cliente,	id_estabelecimento,	id_profissional,	id_servico
+
+3.8 Pagamento 
+
+id_pagamento,	valor	Decimal,	data_pagamento,	forma_pagamento,	status,	id_agendamento
+
+
+
+
+
+
+
+
+
+
+
+
+
