@@ -17,4 +17,6 @@ PROBLEMA
 
 Estabelecimentos de beleza e estética precisam administrar uma grande quantidade de informações diariamente. Clientes, profissionais, serviços, horários e pagamentos precisam estar organizados para evitar conflitos de agenda, perda de informações e dificuldades no acompanhamento dos atendimentos.
 O Inanna busca solucionar esse problema por meio da centralização dessas informações em uma estrutura de banco de dados organizada.
+
+
 A modelagem apresenta entidades, relacionamentos, cardinalidades, atributos e o Diagrama Entidade-Relacionamento (DER).
