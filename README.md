@@ -8,8 +8,6 @@ O Inanna é um sistema de gestão para estabelecimentos de beleza e estética, c
 
 Cada estabelecimento pode possuir vários profissionais, e um profissional pode trabalhar em mais de um estabelecimento. Os serviços são organizados por categorias e podem ser realizados por diferentes profissionais. Os clientes podem realizar agendamentos, que registram o serviço solicitado, o profissional responsável, o estabelecimento, a data e o horário. Os pagamentos são vinculados aos agendamentos, enquanto o programa de fidelidade permite acompanhar os pontos dos clientes.
 
-O objetivo do Inanna é centralizar e organizar essas informações, facilitando o gerenciamento dos estabelecimentos e reduzindo conflitos de horários e inconsistências nos registros.### Minimundo — Inanna
-
 
 O objetivo do Inanna é centralizar e organizar essas informações, facilitando o gerenciamento dos estabelecimentos e reduzindo conflitos de horários e inconsistências nos registros.
 
