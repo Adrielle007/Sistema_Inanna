@@ -1,7 +1,7 @@
 -- vou remover o banco de dados caso ele ja exista 
 DROP DATABASE IF EXISTS Inanna;
 
--- agora vou criar e seleconar meu banco de dados
+-- agora vou criar e selecionar meu banco de dados
 
  CREATE DATABASE Inanna;
  USE inanna;
@@ -15,7 +15,7 @@ DROP DATABASE IF EXISTS Inanna;
  
  nome VARCHAR(125) NOT NULL,
  
- -- o CPF vai ser outro atributo simples ja que eu atribui o id_cliente como chave primaria. Descobri que o REGEX funciona como uma máscra ou um filtro de segurança, garante que o texto seja formado apenas por 111 números.
+ -- o CPF vai ser outro atributo simples ja que eu atribui o id_cliente como chave primaria. Descobri que o REGEX funciona como uma máscra ou um filtro de segurança, garante que o texto seja formado apenas por 11 números.
  
 CPF CHAR(11) NOT NULL UNIQUE CHECK (CPF REGEXP '^[0-9]{11}$'),
  
@@ -28,7 +28,7 @@ telefone VARCHAR(20)
  );
  
  
- -- Faremos uma outra tabela de email para que a primeira forma, mantendo a sua atomicidade.alter
+ -- Faremos uma outra tabela de email por causa da primeira norma, mantendo a sua atomicidade
  
 CREATE TABLE ClienteEmail(
 id_cliente INT UNSIGNED NOT NULL,
@@ -51,7 +51,7 @@ cnpj VARCHAR(14) NOT NULL UNIQUE,
 razao_social VARCHAR(150) NOT NULL,
 nome_fantasia VARCHAR (100),
 telefone VARCHAR(20),
--- vou colocar agora um atributo composto que ue consigo desmembrar ele que é o endereço.
+-- vou colocar agora um atributo composto que eu                                                                                                                                            consigo desmembrar ele que é o endereço.
 logradouro VARCHAR(150) NOT NULL,
 numero VARCHAR(10) NOT NULL,
 bairro VARCHAR(60) NOT NULL,
@@ -76,13 +76,13 @@ CREATE TABLE profissional(
 id_profissional INT UNSIGNED NOT NULL PRIMARY KEY,
 nome VARCHAR(150) NOT NULL,
 cpf CHAR(11) NOT NULL UNIQUE CHECK (CPF REGEXP '^[0-9]{11}$'),
-telefone VARCHAR(20),
+telefone VARCHAR(20) NOT NULL,
 cargo VARCHAR(50) NOT NULL,
 status VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE ProfissionalEmail(
-id_profissional INT UNSIGNED NOT NULL,
+id_profissional INT UNSIGNED NOT NULL PRIMARY KEY,
 email VARCHAR(100) NOT NULL,
 
 PRIMARY KEY(id_profissional, email),
@@ -106,7 +106,7 @@ nome VARCHAR(100) NOT NULL,
 descricao VARCHAR(150) NOT NULL,
 -- eu procurei porque eu nao sabia como colocar so o preço qual tipo seria o melhor e coloquei DECIMAL 
 preco DECIMAL(10, 2) NOT NULL,
--- vou colocar uma referencial ao profissional, até porque não existiria serviço sem profisional.
+-- vou colocar uma referencia ao profissional, até porque não existiria serviço sem profisional.
 CONSTRAINT FK_servico_profissional
 FOREIGN KEY (id_profissional)
 REFERENCES profissional(id_profissional)
@@ -115,7 +115,7 @@ ON DELETE CASCADE
 
 CREATE TABLE agendamento(
 id_agendamento INT UNSIGNED NOT NULL PRIMARY KEY,
--- vou colocar datas e horarios separados para facilitar as bauscas na agenda
+-- vou colocar datas e horarios separados para facilitar as buscas na agenda
 data_agendamento DATE NOT NULL,
 horario TIME NOT NULL,
 -- Descobri que se usa TEXT caso o cliente queria escrever um texo longo
