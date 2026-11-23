@@ -152,5 +152,3 @@ INNER JOIN agendamento a ON pag.id_agendamento = a.id_agendamento
 INNER JOIN estabelecimento est ON a.id_estabelecimento = est.id_estabelecimento
 WHERE pag.status = 'Pago'
 GROUP BY est.id_estabelecimento, est.nome_fantasia;
-
-```
