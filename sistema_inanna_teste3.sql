@@ -168,7 +168,7 @@ CONSTRAINT chk_status_pagamento CHECK (status IN ('Pendente', 'Pago', 'Reembolsa
 pontos_gerados INT UNSIGNED NOT NULL DEFAULT 0,
 
 -- agora eu vou colocar o relacionamento com o a gendamento, porque cada pagamento pertence a um agendamento
-id_agendamento INT UNSIGNED NOT NULL,
+id_agendamento INT UNSIGNED NOT NULL
 
 CONSTRAINT FK_pagamento_agendamento
 FOREIGN KEY (id_agendamento) REFERENCES agendamento (id_agendamento)
