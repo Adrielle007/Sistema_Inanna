@@ -25,7 +25,9 @@ CPF CHAR(11) NOT NULL UNIQUE CHECK (CPF REGEXP '^[0-9]{11}$'),
 
 data_nascimento DATE NOT NULL,
 
-telefone VARCHAR(20)
+telefone VARCHAR(20),
+ -- Isso serve para colocar o programa fidelidade 
+ pontos_fidelidade INT UNSIGNED NOT NULL DEFAULT 0
  );
  
  
@@ -162,6 +164,8 @@ forma_pagamento VARCHAR(30) NOT NULL,
 CONSTRAINT chk_forma_pagamento CHECK (forma_pagamento IN ('Cartão de Crédito', 'Cartão de Débito', 'Pix', 'Dinheiro')),
 status VARCHAR(20) NOT NULL DEFAULT 'Pendente',
 CONSTRAINT chk_status_pagamento CHECK (status IN ('Pendente', 'Pago', 'Reembolsado', 'Cancelado')),
+-- vai ficar vinculado com a fidelidade
+pontos_gerados INT UNSIGNED NOT NULL DEFAULT 0,
 
 -- agora eu vou colocar o relacionamento com o a gendamento, porque cada pagamento pertence a um agendamento
 id_agendamento INT UNSIGNED NOT NULL,
